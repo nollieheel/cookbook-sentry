@@ -1,7 +1,7 @@
 #
 # Author:: Earth U (<iskitingbords @ gmail.com>)
 # Cookbook Name:: cookbook-sentry
-# Recipe:: default
+# Recipe:: python
 #
 # Copyright 2016, Earth U
 #
@@ -18,10 +18,19 @@
 # limitations under the License.
 #
 
-include_recipe "#{cookbook_name}::swap"
-include_recipe "#{cookbook_name}::user"
-include_recipe "#{cookbook_name}::deps"
-include_recipe "#{cookbook_name}::storage"
-include_recipe "#{cookbook_name}::python"
-include_recipe "#{cookbook_name}::configure"
-include_recipe "#{cookbook_name}::service"
+# Install Python packages, including Sentry itself
+
+priv = "#{node[cookbook_name]['install']['home']}/priv"
+reqs = "#{priv}/requirements.txt"
+
+directory priv
+
+template reqs do
+  owner node[cookbook_name]['install']['user']
+  group node[cookbook_name]['install']['group']
+  variables(
+    :modules => node[cookbook_name]['python']['modules']
+  )
+end
+
+pip_requirements reqs

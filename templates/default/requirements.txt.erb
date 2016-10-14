@@ -1,0 +1,13 @@
+<%
+@modules.each do |mod|
+  if mod.is_a?(Array)
+-%>
+<%= mod[0] %>==<%= mod[1] %>
+<%
+  else
+-%>
+<%= mod %>
+<%
+  end
+end
+-%>

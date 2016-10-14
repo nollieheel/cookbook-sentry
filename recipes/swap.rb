@@ -1,7 +1,7 @@
 #
 # Author:: Earth U (<iskitingbords @ gmail.com>)
 # Cookbook Name:: cookbook-sentry
-# Recipe:: default
+# Recipe:: swap
 #
 # Copyright 2016, Earth U
 #
@@ -18,10 +18,21 @@
 # limitations under the License.
 #
 
-include_recipe "#{cookbook_name}::swap"
-include_recipe "#{cookbook_name}::user"
-include_recipe "#{cookbook_name}::deps"
-include_recipe "#{cookbook_name}::storage"
-include_recipe "#{cookbook_name}::python"
-include_recipe "#{cookbook_name}::configure"
-include_recipe "#{cookbook_name}::service"
+# Low RAM (=< 1G) can cause 'sentry upgrade' to lock up, so enable some swap.
+
+swapfile = node[cookbook_name]['swap']['swapfile']
+
+bash 'enable_swap' do
+  code <<-EOF.gsub(/^\s+/, '')
+    set -e
+
+    if [[ ! -f #{swapfile} ]] ; then
+      fallocate -l #{node[cookbook_name]['swap']['size']} #{swapfile}
+      chmod 600 #{swapfile}
+      mkswap #{swapfile}
+      swapon #{swapfile}
+      echo "#{swapfile} none swap sw 0 0" >> /etc/fstab
+    fi
+  EOF
+  only_if { swapfile }
+end

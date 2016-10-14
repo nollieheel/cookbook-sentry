@@ -1,7 +1,7 @@
 #
 # Author:: Earth U (<iskitingbords @ gmail.com>)
 # Cookbook Name:: cookbook-sentry
-# Recipe:: default
+# Recipe:: user
 #
 # Copyright 2016, Earth U
 #
@@ -18,10 +18,13 @@
 # limitations under the License.
 #
 
-include_recipe "#{cookbook_name}::swap"
-include_recipe "#{cookbook_name}::user"
-include_recipe "#{cookbook_name}::deps"
-include_recipe "#{cookbook_name}::storage"
-include_recipe "#{cookbook_name}::python"
-include_recipe "#{cookbook_name}::configure"
-include_recipe "#{cookbook_name}::service"
+# Create the sentry user
+
+group node[cookbook_name]['install']['group']
+
+user node[cookbook_name]['install']['user'] do
+  group       node[cookbook_name]['install']['group']
+  home        node[cookbook_name]['install']['home']
+  shell       '/bin/bash'
+  manage_home true
+end

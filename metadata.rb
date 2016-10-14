@@ -1,13 +1,23 @@
 name             'cookbook-sentry'
 maintainer       'Earth U'
 maintainer_email 'iskitingbords @ gmail.com'
-license          'All rights reserved'
-description      'Installs/Configures cookbook-sentry'
+license          'Apache License'
+description      'Installs/Configures Sentry error-logging software'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 source_url       'https://github.com/nollieheel/cookbook-sentry'
 issues_url       'https://github.com/nollieheel/cookbook-sentry/issues'
 version          '0.1.0'
 
+depends 'apt', '>= 1.9.0'
+depends 'build-essential'
+depends 'git'
+depends 'cmake', '>= 0.3.0'
+depends 'nodejs', '>= 2.1.0'
+depends 'redisio', '>= 2.5.0'
+depends 'postgresql', '>= 4.0.0'
+depends 'database', '>= 5.0.0'
+depends 'poise-python', '>= 1.5.0'
+depends 'supervisor'
+depends 'cron'
 
-
-supports 'ubuntu', '~> 14.04'
+supports 'ubuntu', '14.04'
