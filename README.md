@@ -1,4 +1,4 @@
-# cookbook-sentry-cookbook
+# cookbook-sentry
 
 Installs the [Sentry](https://docs.sentry.io/) error-logging software and all dependencies. Installation steps are taken from the official [instructions](https://docs.sentry.io/server/installation/python/).
 
