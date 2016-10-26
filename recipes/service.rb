@@ -30,10 +30,16 @@ directory installvars['log_dir'] do
 end
 
 sentrycom = "#{configvars['sentry_bin']} --config #{installvars['conf_dir']}"
+
+workcon = ""
+unless configvars['worker']['concurrency'].nil?
+  workcon = " -c #{configvars['worker']['concurrency']}"
+end
+
 [
   {
     :name => 'worker',
-    :comm => "#{sentrycom} run worker"
+    :comm => "#{sentrycom} run worker#{workcon}"
   },
   {
     :name => 'cron',
@@ -52,6 +58,11 @@ sentrycom = "#{configvars['sentry_bin']} --config #{installvars['conf_dir']}"
     autorestart  true
     startretries 5
     stopsignal   'TERM'
+
+    if x[:name] == 'worker' && !configvars['worker']['sup_numprocs'].nil? 
+      numprocs_start 0
+      numprocs       configvars['worker']['sup_numprocs']
+    end
 
     environment(
       'PATH' =>      configvars['sentry_env']['path'],

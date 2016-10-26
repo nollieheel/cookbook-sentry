@@ -83,9 +83,12 @@ default['nodejs']['repo']   = 'https://deb.nodesource.com/node_6.x'
 
 default['redisio']['version']  = '3.2.4'
 override['redisio']['servers'] = [ {
-  'name'    => '_sentry',
-  'address' => '127.0.0.1',
-  'port'    => '6379'
+  'name'            => '_sentry',
+  'address'         => '127.0.0.1',
+  'port'            => '6379',
+  'save'            => [],
+  'maxmemory'       => '1gb',
+  'maxmemorypolicy' => 'allkeys-lru'
 } ]
 
 default['postgresql']['password']['postgres']     = 'secretpassword'
@@ -106,6 +109,9 @@ default[cb]['config']['cron']['logrotate_opts'] = %w{
   compress
   notifempty
 }
+
+default[cb]['config']['worker']['sup_numprocs'] = nil
+default[cb]['config']['worker']['concurrency']  = nil
 
 # Some constants.
 
