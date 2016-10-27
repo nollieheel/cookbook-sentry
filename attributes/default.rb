@@ -54,10 +54,10 @@ default[cb]['python']['modules'] = [
   ['sentry', '8.9.0'],
 
   # Sentry plugins can be installed together as pip packages:
-  'sentry-github',
-  'sentry-gitlab',
-  'sentry-zabbix',
-  'sentry-slack'
+  ['sentry-github', '0.1.2'],
+  ['sentry-gitlab', '0.2.0'],
+  ['sentry-zabbix', '0.0.15'],
+  ['sentry-slack', '0.5.0']
 ]
 
 default[cb]['postgresql']['db_map'] = [

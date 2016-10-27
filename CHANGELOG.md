@@ -1,3 +1,7 @@
+## 0.1.2 - 2016-10-27
+### Added
+- Versions on the default Sentry plugins
+
 ## 0.1.1 - 2016-10-26
 ### Added
 - Attribute to set concurrency for sentry worker (default is number of processors in machine).
