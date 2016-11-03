@@ -6,7 +6,7 @@ description      'Installs/Configures Sentry error-logging software'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 source_url       'https://github.com/nollieheel/cookbook-sentry'
 issues_url       'https://github.com/nollieheel/cookbook-sentry/issues'
-version          '0.1.2'
+version          '0.1.3'
 
 depends 'apt', '>= 1.9.0'
 depends 'build-essential'

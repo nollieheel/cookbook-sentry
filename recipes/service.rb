@@ -62,6 +62,10 @@ end
     if x[:name] == 'worker' && !configvars['worker']['sup_numprocs'].nil? 
       numprocs_start 0
       numprocs       configvars['worker']['sup_numprocs']
+
+      if configvars['worker']['sup_numprocs'] > 1
+        process_name '%(program_name)s_%(process_num)d'
+      end
     end
 
     environment(

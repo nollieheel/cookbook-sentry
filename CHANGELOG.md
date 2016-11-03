@@ -1,3 +1,7 @@
+## 0.1.3 - 2016-11-03
+### Fixed
+- In supervisor service for sentry_worker, added '%(process_num)d' in process_name when numprocs is more than 1.
+
 ## 0.1.2 - 2016-10-27
 ### Added
 - Versions on the default Sentry plugins
