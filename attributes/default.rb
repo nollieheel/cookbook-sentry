@@ -40,23 +40,23 @@ default[cb]['deps']['symlinks'] = {
 }
 
 default[cb]['python']['modules'] = [
-  ['requests[security]', '2.11.1'],
-  ['amqp', '1.4.9'],
+  ['requests[security]', '2.18.1'],
+  ['amqp', '2.2.1'],
   ['anyjson', '0.3.3'],
-  ['billiard', '3.3.0.23'],
-  ['contextlib2', '0.5.4'],
-  ['python-utils', '2.0.0'],
-  ['pytz', '2016.7'],
+  ['billiard', '3.5.0.3'],
+  ['contextlib2', '0.5.5'],
   ['six', '1.10.0'],
-  ['sqlparse', '0.2.1'],
+  ['sqlparse', '0.2.3'],
+  'python-utils',
+  'pytz',
 
   # Sentry will be installed as a pip package here:
-  ['sentry', '8.9.0'],
+  ['sentry', '8.18.0'],
 
   # Sentry plugins can be installed together as pip packages:
   ['sentry-github', '0.1.2'],
   ['sentry-gitlab', '0.2.0'],
-  ['sentry-zabbix', '0.0.15'],
+  ['sentry-zabbix', '0.0.16'],
   ['sentry-slack', '0.5.0']
 ]
 
@@ -81,7 +81,7 @@ default['nodejs']['repo']   = 'https://deb.nodesource.com/node_6.x'
 # The latest NPM will already come with Node v6.x
 #default['nodejs']['npm_packages'] = [ { 'name' => 'npm' } ]
 
-default['redisio']['version']  = '3.2.4'
+default['redisio']['version']  = '3.2.9'
 override['redisio']['servers'] = [ {
   'name'            => '_sentry',
   'address'         => '127.0.0.1',
